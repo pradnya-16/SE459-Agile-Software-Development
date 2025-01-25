@@ -1,0 +1,1 @@
+**Kris Pento:** Kris Pento is a remote graduate student currently doing a M.S. in Computer Science. His interests include Software Optimization, Database Design, and Automation/DevOps. He hopes that this class will equip him more in Agile frameworks.
