@@ -4,4 +4,4 @@
 **Vishnu Vardhan Perali:**
 Vishnu is an International graduate student pursuing his Master’s in Computer Science. Skilled in Python, Django, and SQL. He joined this course to explore Agile frameworks and enhance his understanding.<br><br>
 
-**Omar Sayeed Quadri:** Omar is a Graduate Student pursuing his masters in Computer Science at DePaul University. Having interests in Database Managment, Python, React.JS and Automation, he has better anticipation and exploration equipped to get explore Agile frameworks.<br><br>
+**Omar Sayeed Quadri:** Omar is a Graduate Student pursuing his Master's in Computer Science at DePaul University. Having interests in Database Managment, Python, React.JS and Automation, he has better anticipation and exploration equipped to get explore Agile frameworks.<br><br>
