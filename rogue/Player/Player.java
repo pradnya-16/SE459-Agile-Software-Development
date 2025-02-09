@@ -1,4 +1,4 @@
-package Levels;
+package Player;
 
 import java.awt.*;
 
