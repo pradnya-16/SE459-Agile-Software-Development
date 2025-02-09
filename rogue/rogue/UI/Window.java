@@ -8,6 +8,7 @@ public class Window extends JFrame {
 
     public Window() {
         setTitle("Rogue");
+      //  getContentPane().setBackground(Color.black);
         setSize(800,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
