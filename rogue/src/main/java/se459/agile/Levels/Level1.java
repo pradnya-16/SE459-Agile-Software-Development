@@ -24,6 +24,8 @@ public class Level1 extends JPanel implements KeyListener {
 
     @Override
 	protected void paintComponent(Graphics g) {
+        System.out.println("x = " + player.getX());
+        System.out.println("y = " + player.getY());
         g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 800, 500);
         g.setColor(Color.WHITE);
@@ -56,10 +58,95 @@ public class Level1 extends JPanel implements KeyListener {
         int key = e.getKeyCode();
         int dx = 0, dy = 0;
 
-        if (key == KeyEvent.VK_LEFT) { dx = -1; }
-        if (key == KeyEvent.VK_RIGHT) { dx = 1; }
-        if (key == KeyEvent.VK_UP) { dy = -1; }
-        if (key == KeyEvent.VK_DOWN) { dy = 1; }
+      if (checkRoom2()){
+         if (player.getX() == 190){
+            if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+            if (key == KeyEvent.VK_UP) { dy = -1; }
+            if (key == KeyEvent.VK_DOWN) { dy = 1; }
+        }
+        else if (player.getX() == 270 && player.getY() == 290){
+            if (key == KeyEvent.VK_UP) { dy = -1; }
+            if (key == KeyEvent.VK_DOWN) { dy = 1; }
+        }
+        else if (player.getX() == 350){
+            if (key == KeyEvent.VK_LEFT) { dx = -1; }
+            if (key == KeyEvent.VK_UP) { dy = -1; }
+            if (key == KeyEvent.VK_DOWN) { dy = 1; }
+        }
+        else if (player.getY() == 290){
+            if (key == KeyEvent.VK_LEFT) { dx = -1; }
+            if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+            if (key == KeyEvent.VK_DOWN) { dy = 1; }
+        }
+        else if (player.getY() == 390){
+            if (key == KeyEvent.VK_LEFT) { dx = -1; }
+            if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+            if (key == KeyEvent.VK_UP) { dy = -1; }
+        }
+        else {
+            if (key == KeyEvent.VK_LEFT) { dx = -1; }
+            if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+            if (key == KeyEvent.VK_UP) { dy = -1; }
+            if (key == KeyEvent.VK_DOWN) { dy = 1; }
+        }
+        
+        }
+       else if (checkRoom1()){
+                if (key == KeyEvent.VK_LEFT) { dx = -1; }
+                if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+                if (key == KeyEvent.VK_UP) { dy = -1; }
+                if (key == KeyEvent.VK_DOWN) { dy = 1; }
+            
+        }
+        else {
+         if (player.getX() == 270 && player.getY() >= 230){
+            if (player.getY() == 230){
+                if (key == KeyEvent.VK_LEFT) { dx = -1; }
+                if (key == KeyEvent.VK_DOWN) { dy = 1; }
+            }
+            else {
+                if (key == KeyEvent.VK_UP) { dy = -1; }
+                if (key == KeyEvent.VK_DOWN) { dy = 1; }
+            }
+        }
+          else if (player.getX() == 170 && player.getY() >= 190 && player.getY() < 230){
+                if (key == KeyEvent.VK_UP) { dy = -1; }
+                if (key == KeyEvent.VK_DOWN) { dy = 1; }
+            }
+            else if (player.getX() >= 170 && player.getY() == 230 ){
+                if (player.getX() > 170) {
+                    if (key == KeyEvent.VK_LEFT) { dx = -1; }
+                    if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+                }
+                else {
+                    if (key == KeyEvent.VK_UP) { dy = -1; }
+                    if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+                }
+            }
+            else if (player.getX() == 90){
+                if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+                if (key == KeyEvent.VK_UP) { dy = -1; }
+                if (key == KeyEvent.VK_DOWN) { dy = 1; }
+            }
+            else if (player.getX() == 250){
+                if (key == KeyEvent.VK_LEFT) { dx = -1; }
+                if (key == KeyEvent.VK_UP) { dy = -1; }
+                if (key == KeyEvent.VK_DOWN) { dy = 1; }
+            }
+            else if (player.getY() == 90){
+                if (key == KeyEvent.VK_LEFT) { dx = -1; }
+                if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+                if (key == KeyEvent.VK_DOWN) { dy = 1; }
+            }
+            else if (player.getY() == 190){
+                if (key == KeyEvent.VK_LEFT) { dx = -1; }
+                if (key == KeyEvent.VK_RIGHT) { dx = 1; }
+                if (key == KeyEvent.VK_UP) { dy = -1; }
+            }
+          
+
+        }
+
 
         player.move(dx, dy);
         repaint(); // Refresh screen after movement
@@ -69,5 +156,22 @@ public class Level1 extends JPanel implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {}
+
+    public boolean checkRoom1(){
+        if (player.getX() > 90 && player.getX() < 250 && player.getY() > 90 && player.getY() < 190 ){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     
+    public boolean checkRoom2(){
+        if (player.getX() >= 190 && player.getX() <= 350 && player.getY() >= 290 && player.getY() <= 390 ){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
