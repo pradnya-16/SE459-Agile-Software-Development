@@ -1,0 +1,185 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "rogue",
+        "directory": "C:\\agile sd\\basecode\\SE459-Agile-Software-Development\\rogue",
+        "workspaceDir": "C:\\agile sd\\basecode\\SE459-Agile-Software-Development\\rogue",
+        "sources": [
+            "C:\\agile sd\\basecode\\SE459-Agile-Software-Development\\rogue\\src\\main\\java"
+        ],
+        "dependencies": [
+            
+        ],
+        "classpath": [
+            "C:\\agile sd\\basecode\\SE459-Agile-Software-Development\\rogue\\target\\classes"
+        ],
+        "out": "C:\\agile sd\\basecode\\SE459-Agile-Software-Development\\rogue\\target",
+        "classesDir": "C:\\agile sd\\basecode\\SE459-Agile-Software-Development\\rogue\\target\\classes",
+        "resources": [
+            "C:\\agile sd\\basecode\\SE459-Agile-Software-Development\\rogue\\src\\main\\resources"
+        ],
+        "java": {
+            "options": [
+                "-g",
+                "--release",
+                "17",
+                "-encoding",
+                "UTF-8"
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework",
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "utest.runner.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    {
+                        "args": [
+                            "-v",
+                            "-a"
+                        ],
+                        "framework": {
+                            "names": [
+                                "com.novocode.junit.JUnitFramework"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "C:\\Program Files\\Java\\jdk-20",
+                "options": [
+                    
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.junit.jupiter",
+                    "name": "junit-jupiter-api",
+                    "version": "5.11.0",
+                    "artifacts": [
+                        {
+                            "name": "junit-jupiter-api",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-api\\5.11.0\\junit-jupiter-api-5.11.0.jar"
+                        },
+                        {
+                            "name": "junit-jupiter-api",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-api\\5.11.0\\junit-jupiter-api-5.11.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.opentest4j",
+                    "name": "opentest4j",
+                    "version": "1.3.0",
+                    "artifacts": [
+                        {
+                            "name": "opentest4j",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\opentest4j\\opentest4j\\1.3.0\\opentest4j-1.3.0.jar"
+                        },
+                        {
+                            "name": "opentest4j",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\opentest4j\\opentest4j\\1.3.0\\opentest4j-1.3.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.platform",
+                    "name": "junit-platform-commons",
+                    "version": "1.11.0",
+                    "artifacts": [
+                        {
+                            "name": "junit-platform-commons",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\junit\\platform\\junit-platform-commons\\1.11.0\\junit-platform-commons-1.11.0.jar"
+                        },
+                        {
+                            "name": "junit-platform-commons",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\junit\\platform\\junit-platform-commons\\1.11.0\\junit-platform-commons-1.11.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.jupiter",
+                    "name": "junit-jupiter-params",
+                    "version": "5.11.0",
+                    "artifacts": [
+                        {
+                            "name": "junit-jupiter-params",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-params\\5.11.0\\junit-jupiter-params-5.11.0.jar"
+                        },
+                        {
+                            "name": "junit-jupiter-params",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-params\\5.11.0\\junit-jupiter-params-5.11.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apiguardian",
+                    "name": "apiguardian-api",
+                    "version": "1.1.2",
+                    "artifacts": [
+                        {
+                            "name": "apiguardian-api",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\apiguardian\\apiguardian-api\\1.1.2\\apiguardian-api-1.1.2.jar"
+                        },
+                        {
+                            "name": "apiguardian-api",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\peral\\.m2\\repository\\org\\apiguardian\\apiguardian-api\\1.1.2\\apiguardian-api-1.1.2-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}
