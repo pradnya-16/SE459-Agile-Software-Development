@@ -1,4 +1,4 @@
-package UI;
+package se459.agile.UI;
 
 import java.awt.*;
 import java.awt.event.*;
