@@ -11,9 +11,6 @@ import java.time.Duration;  // Fixes the "Duration cannot be resolved" error
 import javax.swing.*;
 
 
-
-
-
 public class Level1 extends JPanel implements KeyListener {
 
 
