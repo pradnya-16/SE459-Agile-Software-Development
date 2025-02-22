@@ -1,7 +1,6 @@
 package Levels;
 
 import Player.*;
-import se459.agile.Player.Player;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -70,8 +69,8 @@ public class Level1 extends JPanel implements KeyListener {
         g.drawString("Player: " + playerName, 20, 480);
         g.drawString("Health: " + playerHealth, 200, 480);
         g.drawString("Score: " + playerScore, 350, 480);
-        long timeElapsed = Duration.between(startTime, Instant.now()).toSeconds();
-        g.drawString("Time: " + timeElapsed + "s", 500, 480);
+       // long timeElapsed = Duration.between(startTime, Instant.now()).toSeconds();
+       // g.drawString("Time: " + timeElapsed + "s", 500, 480);
     }
 
 
