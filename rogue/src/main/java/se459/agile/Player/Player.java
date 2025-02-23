@@ -1,11 +1,11 @@
-package Player;
+package se459.agile.Player;
 
 import java.awt.*;
 
 public class Player {
-    private int x, y;  // Player's position
-    private final int size = 20;  // Player size
-    private final int speed = 10; // Movement speed
+    private int x, y;
+    private final int size = 20;
+    private final int speed = 10;
 
     public Player(int startX, int startY) {
         this.x = startX;
