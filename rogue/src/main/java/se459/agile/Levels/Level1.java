@@ -7,6 +7,10 @@ import java.awt.event.*;
 import java.time.Instant;
 
 import javax.swing.*;
+import se459.agile.Player.Monster;
+import se459.agile.Levels.Stairs;
+
+
 
 
 
@@ -19,14 +23,24 @@ public class Level1 extends JPanel implements KeyListener {
     private int playerScore = 0;    // Score
     private Instant startTime;      // Start time for tracking duration
     private String playerName; 	    //Assign random player name
+    private Monster monster;        //For monster generation
+    private Stairs stairs; // For stairs in Room 2
+    private long lastDamageTime = 0;        // Cooldown timer for damage
+    private final long damageCooldown = 1000;
+
+
+
 
     public Level1() {
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(800, 500));
         player = new Player(150, 150); // Start player at (50,50)
+        monster = new Monster(300, 310); // Position the monster somewhere in the room
+        stairs = new Stairs(320, 360); // Stairs in Room 2
         addKeyListener(this);
         setFocusable(true); // Ensures the panel listens for key events
         this.startTime = Instant.now();
+
 
 	//Random Player Name
         String[] names = {"Rogue", "Warrior", "Knight", "Shadow", "Hunter"};
@@ -62,6 +76,9 @@ public class Level1 extends JPanel implements KeyListener {
         }
 
         player.draw(g);
+        monster.draw(g); // Draw the monster
+        stairs.draw(g);
+
 
         g.setColor(Color.WHITE);
         g.fillRect(0, 460, 800, 40);  // Background bar for stats
@@ -69,6 +86,7 @@ public class Level1 extends JPanel implements KeyListener {
         g.drawString("Player: " + playerName, 20, 480);
         g.drawString("Health: " + playerHealth, 200, 480);
         g.drawString("Score: " + playerScore, 350, 480);
+
        // long timeElapsed = Duration.between(startTime, Instant.now()).toSeconds();
        // g.drawString("Time: " + timeElapsed + "s", 500, 480);
     }
@@ -170,8 +188,33 @@ public class Level1 extends JPanel implements KeyListener {
 
 
         player.move(dx, dy);
-        repaint(); // Refresh screen after movement
+        repaint();
         playerScore += 1;
+
+        monster.activateIfPlayerInRoom(player);
+        monster.moveTowards(player);
+
+        // Check collision with monster
+        if (monster.checkCollision(player)) {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastDamageTime >= damageCooldown) {
+                playerHealth -= 10; // Reduce health with cooldown
+                lastDamageTime = currentTime;
+            }
+
+            if (playerHealth <= 0) {
+                JOptionPane.showMessageDialog(this, "Game Over! The Monster got you!");
+                System.exit(0);
+            }
+        }
+
+
+        // Check if player reached the stairs
+        if (stairs.checkCollision(player.getX(), player.getY())) {
+            JOptionPane.showMessageDialog(this, "You found the stairs! Proceeding to the next level...");
+            System.exit(0);
+        }
+
     }
     @Override
 	public void keyReleased(KeyEvent arg0) {}
