@@ -1,7 +1,5 @@
 package Levels;
 
-import Player.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.time.Instant;
@@ -9,6 +7,7 @@ import java.time.Instant;
 import javax.swing.*;
 import se459.agile.Player.Monster;
 import se459.agile.Levels.Stairs;
+import se459.agile.Player.Player;
 
 
 
