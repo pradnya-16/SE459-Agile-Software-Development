@@ -1,4 +1,4 @@
-package Player;
+package se459.agile.Player;
 
 import java.awt.*;
 
