@@ -22,7 +22,7 @@ public class Monster {
     }
 
     // Activate monster when player enters Room 2
-    public void activateIfPlayerInRoom(Player.Player player) {
+    public void activateIfPlayerInRoom(Player player) {
         if (player.getX() >= room2MinX && player.getX() <= room2MaxX &&
                 player.getY() >= room2MinY && player.getY() <= room2MaxY) {
             isActive = true;
@@ -32,7 +32,7 @@ public class Monster {
     }
 
     // Move towards the player if active
-    public void moveTowards(Player.Player player) {
+    public void moveTowards(Player player) {
         if (!isActive) return; // Monster stays idle if not active
 
         Point head = body.getFirst();
@@ -67,7 +67,7 @@ public class Monster {
     }
 
     // Check collision with player
-    public boolean checkCollision(Player.Player player) {
+    public boolean checkCollision(Player player) {
         Point head = body.getFirst();
         return Math.abs(player.getX() - head.x) < segmentSize &&
                 Math.abs(player.getY() - head.y) < segmentSize;
