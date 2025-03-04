@@ -4,24 +4,23 @@ import java.awt.*;
 import java.util.LinkedList;
 
 public class Monster {
-    private LinkedList<Point> body; // Snake segments
-    private final int segmentSize = 10;
-    private final int maxLength = 5; // Number of segments
+    private int x, y; // Position of the monster
+    private final int size = 20; // Size of the ghost
     private final int speed = 5;
     private boolean isActive = false; // Active only when player is in Room 2
+    private int health = 50; // Monster health
 
-    // Define Room 2 boundaries
+    // Room 2 boundaries
     private final int room2MinX = 190;
     private final int room2MaxX = 350;
     private final int room2MinY = 290;
     private final int room2MaxY = 390;
 
     public Monster(int startX, int startY) {
-        body = new LinkedList<>();
-        body.add(new Point(startX, startY)); // Start near the Room 2 entry
+        this.x = startX;
+        this.y = startY;
     }
 
-    // Activate monster when player enters Room 2
     public void activateIfPlayerInRoom(Player player) {
         if (player.getX() >= room2MinX && player.getX() <= room2MaxX &&
                 player.getY() >= room2MinY && player.getY() <= room2MaxY) {
@@ -31,48 +30,61 @@ public class Monster {
         }
     }
 
-    // Move towards the player if active
     public void moveTowards(Player player) {
-        if (!isActive) return; // Monster stays idle if not active
+        if (!isActive || health <= 0) return; // Stop moving if dead
 
-        Point head = body.getFirst();
         int dx = 0, dy = 0;
 
-        if (player.getX() > head.x) dx = speed;
-        if (player.getX() < head.x) dx = -speed;
-        if (player.getY() > head.y) dy = speed;
-        if (player.getY() < head.y) dy = -speed;
+        if (player.getX() > x) dx = speed;
+        if (player.getX() < x) dx = -speed;
+        if (player.getY() > y) dy = speed;
+        if (player.getY() < y) dy = -speed;
 
-        Point newHead = new Point(head.x + dx, head.y + dy);
-        body.addFirst(newHead);
-
-        // Limit the snake length
-        if (body.size() > maxLength) {
-            body.removeLast();
-        }
+        x += dx;
+        y += dy;
     }
 
-    // Draw the snake
     public void draw(Graphics g) {
-        g.setColor(Color.ORANGE);
-        for (Point p : body) {
-            g.fillRect(p.x, p.y, segmentSize, segmentSize);
-        }
-
-        // Draw eyes on the head
-        Point head = body.getFirst();
+        if (health <= 0) return; // Don't draw if dead
+    
+         // Draw ghost body
+        g.setColor(Color.BLUE);
+        g.fillArc(x, y, size, size, 0, 180); // Semi-circle ghost shape
+    
+        // Draw ghost "legs"
+        g.fillRect(x, y + size / 2, size, size / 4);
+    
+        // Draw eyes
         g.setColor(Color.WHITE);
-        g.fillOval(head.x + 2, head.y + 2, 4, 4); // Left eye
-        g.fillOval(head.x + 7, head.y + 2, 4, 4); // Right eye
+        g.fillOval(x + 4, y + 4, 5, 5); // Left eye
+        g.fillOval(x + 11, y + 4, 5, 5); // Right eye
+    
+        // Draw pupils
+        g.setColor(Color.BLACK);
+        g.fillOval(x + 5, y + 6, 2, 2); // Left pupil
+        g.fillOval(x + 12, y + 6, 2, 2); // Right pupil
+
+    }
+    
+
+    public void takeDamage(int amount) {
+        health -= amount;
+        if (health <= 0) {
+            health = 0; // Ensure health doesn't go negative
+        }
     }
 
-    // Check collision with player
+    public boolean isAlive() {
+        return health > 0;
+    }
+
     public boolean checkCollision(Player player) {
-        Point head = body.getFirst();
-        return Math.abs(player.getX() - head.x) < segmentSize &&
-                Math.abs(player.getY() - head.y) < segmentSize;
+        if (!isAlive()) return false; // No collision if dead
+
+        return Math.abs(player.getX() - x) < size / 2 &&
+               Math.abs(player.getY() - y) < size / 2;
     }
 
-    public int getX() { return body.getFirst().x; }
-    public int getY() { return body.getFirst().y; }
+    public int getX() { return x; }
+    public int getY() { return y; }
 }
