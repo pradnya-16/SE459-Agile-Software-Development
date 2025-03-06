@@ -1,7 +1,7 @@
 package se459.agile;
 
-import UI.*;
-import Levels.*;
+import se459.agile.UI.Window;
+import se459.agile.Levels.Level1;
 
 
 public class Main {

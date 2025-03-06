@@ -1,4 +1,4 @@
-package Levels;
+package se459.agile.Levels;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,23 +9,18 @@ import se459.agile.Player.Monster;
 import se459.agile.Levels.Stairs;
 import se459.agile.Player.Player;
 
-
-
-
-
-
 public class Level1 extends JPanel implements KeyListener {
-
-
     private Player player;
-    private int playerHealth = 100; // Player health
-    private int playerScore = 0;    // Score
-    private Instant startTime;      // Start time for tracking duration
-    private String playerName; 	    //Assign random player name
-    private Monster monster;        //For monster generation
-    private Stairs stairs; // For stairs in Room 2
-    private long lastDamageTime = 0;        // Cooldown timer for damage
+    private Monster monster;
+    private Stairs stairs;
+    private int playerHealth = 100;
+    private int playerScore = 0;
+    private String playerName;
+    private Instant startTime;
+    private long lastDamageTime = 0;
     private final long damageCooldown = 1000;
+    private long lastAttackTime = 0;
+    private final long attackCooldown = 500; // Prevent spam attacks
 
 
 
@@ -205,16 +200,57 @@ public class Level1 extends JPanel implements KeyListener {
                 JOptionPane.showMessageDialog(this, "Game Over! The Monster got you!");
                 System.exit(0);
             }
+        }// Combat Mechanic: Player Attacks Monster
+        if (key == KeyEvent.VK_SPACE) {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastAttackTime >= attackCooldown) {
+                attackMonster();
+                lastAttackTime = currentTime;
+            }
         }
 
+        monster.activateIfPlayerInRoom(player);
+        monster.moveTowards(player);
 
-        // Check if player reached the stairs
+        // Monster Damage to Player
+        if (monster.checkCollision(player)) {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastDamageTime >= damageCooldown) {
+                playerHealth -= 10;
+                lastDamageTime = currentTime;
+            }
+
+            if (playerHealth <= 0) {
+                JOptionPane.showMessageDialog(this, "Game Over! The Monster got you!");
+                System.exit(0);
+            }
+        }
+
+        // If player reaches stairs
         if (stairs.checkCollision(player.getX(), player.getY())) {
-            JOptionPane.showMessageDialog(this, "You found the stairs! Proceeding to the next level...");
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, "You found the stairs! Proceeding to Level 2...");
+            
+            // Create a new Level2 window
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.getContentPane().removeAll();
+            frame.add(new Level2());
+            frame.revalidate();
+            frame.repaint();
         }
-
+        
     }
+
+    private void attackMonster() {
+        if (monster.isAlive() && monster.checkCollision(player)) {
+            monster.takeDamage(20); // Monster takes damage
+            if (!monster.isAlive()) {
+                playerScore += 100; // Award points for killing the monster
+                JOptionPane.showMessageDialog(this, "You defeated the monster!");
+            }
+            repaint();
+        }
+    }
+
     @Override
 	public void keyReleased(KeyEvent arg0) {}
 
