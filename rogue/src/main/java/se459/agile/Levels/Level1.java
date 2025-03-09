@@ -8,6 +8,7 @@ import javax.swing.*;
 import se459.agile.Player.Monster;
 import se459.agile.Levels.Stairs;
 import se459.agile.Player.Player;
+import se459.agile.UI.InventoryUI;
 
 public class Level1 extends JPanel implements KeyListener {
     private Player player;
@@ -208,6 +209,11 @@ public class Level1 extends JPanel implements KeyListener {
                 lastAttackTime = currentTime;
             }
         }
+        //For inventory
+        if (key == KeyEvent.VK_I) {
+            new InventoryUI(player);
+        }
+        
 
         monster.activateIfPlayerInRoom(player);
         monster.moveTowards(player);
