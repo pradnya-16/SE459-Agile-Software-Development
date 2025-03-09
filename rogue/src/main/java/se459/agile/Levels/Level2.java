@@ -1,12 +1,18 @@
 package se459.agile.Levels;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.time.Instant;
-import javax.swing.*;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import se459.agile.Player.Monster;
-import se459.agile.Levels.Stairs;
 import se459.agile.Player.Player;
+import se459.agile.UI.InventoryUI;
 
 public class Level2 extends JPanel implements KeyListener {
     private Player player;
@@ -131,6 +137,12 @@ public class Level2 extends JPanel implements KeyListener {
                 lastAttackTime = currentTime;
             }
         }
+
+        //For inventory
+        if (key == KeyEvent.VK_I) {
+            new InventoryUI(player);
+        }
+
 
         // Monster Damage to Player
         if (monster1.checkCollision(player) || monster2.checkCollision(player) || monster3.checkCollision(player)) {
